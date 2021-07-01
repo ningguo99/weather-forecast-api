@@ -7,15 +7,21 @@ const { City } = require('../models/city');
 router.get('/', async (req, res) => {
     try {
         let cities = [];
-        console.log(req.query.countryId)
         if (req.query.countryId) {
             cities = await City.findAll({
                 where: {
                     countryId: req.query.countryId
-                }
+                },
+                order: [
+                    ['name']
+                ]
             });
         } else {
-            cities = await City.findAll();
+            cities = await City.findAll({
+                order: [
+                    ['name']
+                ]
+            });
         }
 
         return res.json(new ApiResponse(200, 0, cities));

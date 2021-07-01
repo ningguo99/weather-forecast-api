@@ -6,7 +6,11 @@ const { Country } = require('../models/country');
 
 router.get('/', async (req, res) => {
     try {
-        const countries = await Country.findAll();
+        const countries = await Country.findAll({
+            order: [
+                ['name']
+            ]
+        });
         res.json(new ApiResponse(200, 0, countries));
     } catch (error) {
         console.error(error.message);
