@@ -22,12 +22,12 @@ router.get('/', cityProvided, async (req, res) => {
         if (cityRecord === null) {
             return res.status(404).json(new ApiResponse(404, 'City Not Found'));
         }
-        // find weather records for the next 10 days
+        // find weather records for today and the next 10 days
         const weathers = await Weather.findAll({
             where: {
                 cityId: cityRecord.id
             },
-            limit: 10
+            limit: 11
         });
 
         res.json(new ApiResponse(200, 0, {list: weathers, city: cityRecord}));
