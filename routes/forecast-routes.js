@@ -28,7 +28,7 @@ router.get('/', cityProvided, async (req, res) => {
                 cityId: cityRecord.id
             },
             order: [
-                ['dt']
+                ['dt', 'DESC']
             ],
             limit: 11
         });
